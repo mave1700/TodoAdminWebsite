@@ -1,1 +1,27 @@
-<p>user-details works!</p>
+<div class="well mt-3">
+  <div class="row">
+    <div class="col-md-3">
+      <strong>First name:</strong>
+    </div>
+    <div class="col-md-3">
+      {{user?.firstname}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Last name</strong>
+    </div>
+    <div class="col-md-3">
+      {{user?.lastname}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Age</strong>
+    </div>
+    <div class="col-md-3">
+      {{user?.age}}
+    </div>
+  </div>
+</div>
+<app-user-tasks [tasks] ="user?.tasks"></app-user-tasks>

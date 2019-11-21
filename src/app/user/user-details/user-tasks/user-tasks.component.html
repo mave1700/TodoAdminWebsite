@@ -1,0 +1,28 @@
+<div class="row mt-3">
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Task desc</th>
+            <th>Status</th>
+            <th>Due date</th>
+            <th>Date created</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of tasks">
+            <td>{{task?.name}}</td>
+
+            <td class="done" *ngIf='task?.isCompleted; else pending'>Done</td>
+            <ng-template #pending>
+              <td class="pending">Pending</td>
+            </ng-template>
+            <td>{{task?.dueDate | date: 'dd/MM/yyyy'}}</td>
+            <td>{{task?.creationDate | date: 'dd/MM/yyyy'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

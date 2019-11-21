@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RepositoryService } from './../../shared/services/repository.service';
 import { User } from './../../_interfaces/user.model';
 import { ErrorHandlerService } from './../../shared/services/error-handler.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class UserListComponent implements OnInit {
 
   constructor(
     private repository: RepositoryService,
-    private errorHandler: ErrorHandlerService) { }
+    private errorHandler: ErrorHandlerService,
+    private router: Router) { }
 
     ngOnInit() {
       this.getAllUsers();
@@ -31,6 +33,11 @@ export class UserListComponent implements OnInit {
         this.errorHandler.handleError(error);
         this.errorMessage = this.errorHandler.errorMessage;
       });
+  }
+
+  public getUserDetails(id){
+    let detailsUrl = `/user/details/${id}`;
+    this.router.navigate([detailsUrl]);
   }
 
 }
