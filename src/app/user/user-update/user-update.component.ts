@@ -15,7 +15,8 @@ export class UserUpdateComponent implements OnInit {
   public user: User;
   public userForm: FormGroup;
 
-  constructor(private repository: RepositoryService,
+  constructor(
+    private repository: RepositoryService,
     private errorHandler: ErrorHandlerService,
     private router: Router,
     private activeRoute: ActivatedRoute
@@ -38,10 +39,10 @@ export class UserUpdateComponent implements OnInit {
         this.user = res as User;
         this.userForm.patchValue(this.user);
       },
-      (error) => {
-        this.errorHandler.handleError(error);
-        this.errorMessage = this.errorHandler.errorMessage;
-      });
+        (error) => {
+          this.errorHandler.handleError(error);
+          this.errorMessage = this.errorHandler.errorMessage;
+        });
   }
 
   public validateControl(controlName: string) {
@@ -58,19 +59,19 @@ export class UserUpdateComponent implements OnInit {
     return false;
   }
 
-  public redirectToUserList(){
+  public redirectToUserList() {
     this.router.navigate(['/user/list']);
   }
 
-  public updateUser(userFormValue){
-    if(this.userForm.valid){
+  public updateUser(userFormValue) {
+    if (this.userForm.valid) {
       this.executeUserUpdate(userFormValue);
     }
   }
 
   private executeUserUpdate(userFormValue) {
-    this.user.firstname = userFormValue.firstName;
-    this.user.lastname = userFormValue.lastName;
+    this.user.firstname = userFormValue.firstname;
+    this.user.lastname = userFormValue.lastname;
     this.user.age = userFormValue.age;
 
     const apiUrl = `api/user/${this.user.id}`;
@@ -78,11 +79,11 @@ export class UserUpdateComponent implements OnInit {
       .subscribe(res => {
         $('#successModal').modal();
       },
-      (error) => {
-        this.errorHandler.handleError(error);
-        this.errorMessage = this.errorHandler.errorMessage;
-      }
-      )
+        (error) => {
+          this.errorHandler.handleError(error);
+          this.errorMessage = this.errorHandler.errorMessage;
+        }
+      );
   }
 
 }

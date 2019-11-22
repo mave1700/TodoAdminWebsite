@@ -1,5 +1,5 @@
 export interface UserForCreation {
-    firstName: string;
-    lastName: string;
+    firstname: string;
+    lastname: string;
     age: string;
 }

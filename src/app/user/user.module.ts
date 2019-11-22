@@ -9,6 +9,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserTasksComponent } from './user-details/user-tasks/user-tasks.component';
 import { UserCreateComponent } from './user-create/user-create.component';
 import { UserUpdateComponent } from './user-update/user-update.component';
+import { UserDeleteComponent } from './user-delete/user-delete.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { UserUpdateComponent } from './user-update/user-update.component';
       { path: 'list', component: UserListComponent },
       { path: 'details/:id', component: UserDetailsComponent },
       { path: 'create', component: UserCreateComponent },
-      { path: 'update/:id', component: UserUpdateComponent }
+      { path: 'update/:id', component: UserUpdateComponent },
+      { path: 'delete/:id', component: UserDeleteComponent }
 
     ])
   ],
@@ -29,6 +31,7 @@ import { UserUpdateComponent } from './user-update/user-update.component';
     UserDetailsComponent,
     UserTasksComponent,
     UserCreateComponent,
-    UserUpdateComponent]
+    UserUpdateComponent,
+    UserDeleteComponent]
 })
 export class UserModule { }

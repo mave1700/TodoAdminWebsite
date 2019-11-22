@@ -23,8 +23,8 @@ export class UserCreateComponent implements OnInit {
 
   ngOnInit() {
     this.userForm = new FormGroup({
-      firstName: new FormControl('', [Validators.required, Validators.maxLength(45), Validators.minLength(1)]),
-      lastName: new FormControl('', [Validators.required, Validators.maxLength(45), Validators.minLength(1)]),
+      firstname: new FormControl('', [Validators.required, Validators.maxLength(45), Validators.minLength(1)]),
+      lastname: new FormControl('', [Validators.required, Validators.maxLength(45), Validators.minLength(1)]),
       age: new FormControl('', [Validators.required, Validators.maxLength(3), Validators.minLength(1)])
     });
   }
@@ -51,8 +51,8 @@ export class UserCreateComponent implements OnInit {
 
   private executeUserCreation(userFormValue) {
     const user: UserForCreation = {
-      firstName: userFormValue.firstName,
-      lastName: userFormValue.lastName,
+      firstname: userFormValue.firstname,
+      lastname: userFormValue.lastname,
       age: userFormValue.age
     };
 
