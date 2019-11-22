@@ -19,9 +19,9 @@ export class UserListComponent implements OnInit {
     private errorHandler: ErrorHandlerService,
     private router: Router) { }
 
-    ngOnInit() {
-      this.getAllUsers();
-    }
+  ngOnInit() {
+    this.getAllUsers();
+  }
 
   public getAllUsers() {
     const apiAddress = 'api/user';
@@ -29,15 +29,20 @@ export class UserListComponent implements OnInit {
       .subscribe(res => {
         this.users = res as User[];
       },
-      (error) => {
-        this.errorHandler.handleError(error);
-        this.errorMessage = this.errorHandler.errorMessage;
-      });
+        (error) => {
+          this.errorHandler.handleError(error);
+          this.errorMessage = this.errorHandler.errorMessage;
+        });
   }
 
-  public getUserDetails(id){
-    let detailsUrl = `/user/details/${id}`;
+  public getUserDetails(id) {
+    const detailsUrl = `/user/details/${id}`;
     this.router.navigate([detailsUrl]);
+  }
+
+  redirectToUpdatePage(id) {
+    const updateUrl = `/user/update/${id}`;
+    this.router.navigate([updateUrl]);
   }
 
 }

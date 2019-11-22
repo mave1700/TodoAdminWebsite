@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <form [formGroup]="userForm" autocomplete="off" novalidate (ngSubmit)="createUser(userForm.value)">
+  <form [formGroup]="userForm" autocomplete="off" novalidate (ngSubmit)="updateUser(userForm.value)">
     <div class="form-horizontal well">
 
       <div class="form-group">
@@ -45,21 +45,20 @@
       <br><br>
 
       <div class="form-group">
-          <div class="col-md-5 col mb-1">
-            <button type="submit" class="btn btn-block btn-info" [disabled]="!userForm.valid">Save</button>
-          </div>
-          <div class="col-md-5">
-            <button type="button" class="btn btn-block btn-danger" (click)="redirectToUserList()">Cancel</button>
-          </div>
+        <div class="col-md-5 col mb-1">
+          <button type="submit" class="btn btn-block btn-info" [disabled]="!userForm.valid">Save</button>
         </div>
+        <div class="col-md-5">
+          <button type="button" class="btn btn-block btn-danger" (click)="redirectToUserList()">Cancel</button>
+        </div>
+      </div>
 
     </div>
   </form>
 
-  <app-success-modal [modalHeaderText]="'Success!'" [modalBodyText]="'User was created successfully'"
+  <app-success-modal [modalHeaderText]="'Success!'" [modalBodyText]="'User was updated successfully'"
     [okButtonText]="'OK'" (redirectOnOK)="redirectToUserList()"></app-success-modal>
 
   <app-error-modal [modalHeaderText]="'Error'" [modalBodyText]="errorMessage" [okButtonText]="'OK'">
   </app-error-modal>
-
 </div>
