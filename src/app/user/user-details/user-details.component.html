@@ -9,7 +9,7 @@
   </div>
   <div class="row">
     <div class="col-md-3">
-      <strong>Last name</strong>
+      <strong>Last name:</strong>
     </div>
     <div class="col-md-3">
       {{user?.lastname}}
@@ -17,10 +17,18 @@
   </div>
   <div class="row">
     <div class="col-md-3">
-      <strong>Age</strong>
+      <strong>Date of birth:</strong>
     </div>
     <div class="col-md-3">
-      {{user?.age}}
+      {{user?.dateOfBirth | date: 'yyyy/MM/dd'}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Username:</strong>
+    </div>
+    <div class="col-md-3">
+      {{user?.username}}
     </div>
   </div>
 </div>

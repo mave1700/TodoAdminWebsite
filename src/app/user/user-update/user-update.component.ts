@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, LOCALE_ID, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ErrorHandlerService } from './../../shared/services/error-handler.service';
 import { RepositoryService } from './../../shared/services/repository.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from './../../_interfaces/user.model';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-user-update',
@@ -19,15 +20,18 @@ export class UserUpdateComponent implements OnInit {
     private repository: RepositoryService,
     private errorHandler: ErrorHandlerService,
     private router: Router,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    @Inject(LOCALE_ID) private locale: string
   ) { }
 
   ngOnInit() {
     this.userForm = new FormGroup({
-      firstName: new FormControl('', [Validators.required, Validators.maxLength(45), Validators.minLength(1)]),
-      lastName: new FormControl('', [Validators.required, Validators.maxLength(45), Validators.minLength(1)]),
-      age: new FormControl('', [Validators.required, Validators.maxLength(3), Validators.minLength(1)])
+      firstname: new FormControl('', [Validators.required, Validators.maxLength(45), Validators.minLength(1)]),
+      lastname: new FormControl('', [Validators.required, Validators.maxLength(45), Validators.minLength(1)]),
+      dateOfBirth: new FormControl('', [Validators.required]),
+      username: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)])
     });
+    this.getUserById();
   }
 
   private getUserById() {
@@ -38,6 +42,7 @@ export class UserUpdateComponent implements OnInit {
       .subscribe(res => {
         this.user = res as User;
         this.userForm.patchValue(this.user);
+        $('#dateOfBirth').val(formatDate(this.user.dateOfBirth, 'yyyy/MM/dd', this.locale));
       },
         (error) => {
           this.errorHandler.handleError(error);
@@ -59,6 +64,11 @@ export class UserUpdateComponent implements OnInit {
     return false;
   }
 
+
+  public executeDatePicker(event) {
+    this.userForm.patchValue({ dateOfBirth: event });
+  }
+
   public redirectToUserList() {
     this.router.navigate(['/user/list']);
   }
@@ -72,7 +82,8 @@ export class UserUpdateComponent implements OnInit {
   private executeUserUpdate(userFormValue) {
     this.user.firstname = userFormValue.firstname;
     this.user.lastname = userFormValue.lastname;
-    this.user.age = userFormValue.age;
+    this.user.dateOfBirth = formatDate(userFormValue.dateOfBirth, 'yyyy-MM-dd', this.locale);
+    this.user.username = userFormValue.username;
 
     const apiUrl = `api/user/${this.user.id}`;
     this.repository.update(apiUrl, this.user)

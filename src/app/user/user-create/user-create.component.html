@@ -3,7 +3,7 @@
     <div class="form-horizontal well">
 
       <div class="form-group">
-        <label for="firstname" class="control-label col-md-2">Name of the owner: </label>
+        <label for="firstname" class="control-label col-md-2">First name: </label>
         <div class="col-md-5">
           <input type="text" formControlName="firstname" id="firstname" class="form-control" />
         </div>
@@ -17,7 +17,7 @@
       </div>
 
       <div class="form-group">
-        <label for="lastname" class="control-label col-md-2">Name of the owner: </label>
+        <label for="lastname" class="control-label col-md-2">Last name: </label>
         <div class="col-md-5">
           <input type="text" formControlName="lastname" id="lastname" class="form-control" />
         </div>
@@ -31,27 +31,41 @@
       </div>
 
       <div class="form-group">
-        <label for="age" class="control-label col-md-2">Name of the owner: </label>
+        <label for="dateOfBirth" class="control-label col-md-2">Date of birth: </label>
         <div class="col-md-5">
-          <input type="text" formControlName="age" id="age" class="form-control" />
+          <input type="text" formControlName="dateOfBirth" id="dateOfBirth" class="form-control" appDatepicker
+            (change)="executeDatePicker($event)" readonly />
         </div>
         <div class="col-md-5">
-          <em *ngIf="validateControl('age') && hasError('age', 'required')">Age is required</em>
-          <em *ngIf="validateControl('age') && hasError('age', 'maxlength')">Maximum allowed length is 3 numbers.</em>
-          <em *ngIf="validateControl('age') && hasError('age', 'minlength')">Minimum allowed length is 1 number. </em>
+          <em *ngIf="validateControl('dateOfBirth') && hasError('dateOfBirth', 'required')">Date of birth is
+            required</em>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lastname" class="control-label col-md-2">Username: </label>
+        <div class="col-md-5">
+          <input type="text" formControlName="username" id="username" class="form-control" />
+        </div>
+        <div class="col-md-5">
+          <em *ngIf="validateControl('username') && hasError('username', 'required')">Username is required</em>
+          <em *ngIf="validateControl('username') && hasError('username', 'maxlength')">Maximum allowed length is 30
+            characters.</em>
+          <em *ngIf="validateControl('username') && hasError('username', 'minlength')">Minimum allowed length is 3
+            character.</em>
         </div>
       </div>
 
       <br><br>
 
       <div class="form-group">
-          <div class="col-md-5 col mb-1">
-            <button type="submit" class="btn btn-block btn-info" [disabled]="!userForm.valid">Save</button>
-          </div>
-          <div class="col-md-5">
-            <button type="button" class="btn btn-block btn-danger" (click)="redirectToUserList()">Cancel</button>
-          </div>
+        <div class="col-md-5 col mb-1">
+          <button type="submit" class="btn btn-block btn-info" [disabled]="!userForm.valid">Save</button>
         </div>
+        <div class="col-md-5">
+          <button type="button" class="btn btn-block btn-danger" (click)="redirectToUserList()">Cancel</button>
+        </div>
+      </div>
 
     </div>
   </form>

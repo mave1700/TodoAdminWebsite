@@ -10,7 +10,7 @@ export class DatepickerDirective implements OnInit {
 
   public ngOnInit() {
     $(this.elementRef.nativeElement).datepicker({
-      dateFormat: 'mm/dd/yy',
+      dateFormat: 'yy/mm/dd',
       changeYear: true,
       yearRange: '-100:+0',
       onSelect: (dateText) => {

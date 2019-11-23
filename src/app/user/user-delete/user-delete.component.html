@@ -1,11 +1,11 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-10 well">
+    <div class="col-md-8 well">
       <div class="row">
-        <div class="col-md-3">
-          <label for="firstName" class="control-label">User first name:</label>
+        <div class="col-3">
+          <label for="firstName" class="control-label font-weight-bold">First name:</label>
         </div>
-        <div class="col-md-7">
+        <div class="col-7">
           <span name="firstName">
             {{user?.firstname}}
           </span>
@@ -13,10 +13,10 @@
       </div>
 
       <div class="row">
-        <div class="col-md-3">
-          <label for="lastname" class="control-label">User last name:</label>
+        <div class="col-3">
+          <label for="lastname" class="control-label font-weight-bold">Last name:</label>
         </div>
-        <div class="col-md-7">
+        <div class="col-7">
           <span name="lastname">
             {{user?.lastname}}
           </span>
@@ -24,12 +24,23 @@
       </div>
 
       <div class="row">
-        <div class="col-md-3">
-          <label for="age" class="control-label">Age:</label>
+        <div class="col-3">
+          <label for="age" class="control-label font-weight-bold">Date of birth:</label>
         </div>
-        <div class="col-md-7">
+        <div class="col-7">
           <span name="age">
-            {{user?.age}}
+            {{user?.dateOfBirth | date: 'yyyy/MM/dd'}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-3">
+          <label for="age" class="control-label font-weight-bold">Username:</label>
+        </div>
+        <div class="col-7">
+          <span name="age">
+            {{user?.username}}
           </span>
         </div>
       </div>
@@ -38,11 +49,13 @@
   </div>
   <br>
   <div class="row">
-    <div class="col-md-offset-8 col-md-1">
-      <button type="submit" class="btn btn-info" (click)="deleteUser()">Delete</button>
+    <div class="col-md-5 col mb-1">
+      <button type="submit" class="btn btn-block btn-info" (click)="deleteUser()">Delete</button>
     </div>
-    <div class="col-md-1">
-      <button type="button" class="btn btn-danger" (click)="redirectToUserList()">Cancel</button>
+  </div>
+  <div class="row">
+    <div class="col-md-5">
+      <button type="button" class="btn btn-block btn-danger" (click)="redirectToUserList()">Cancel</button>
     </div>
   </div>
 

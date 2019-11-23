@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, LOCALE_ID, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserForCreation } from '../../_interfaces/user-for-creation.model';
 import { ErrorHandlerService } from './../../shared/services/error-handler.service';
 import { RepositoryService } from './../../shared/services/repository.service';
 import { Router } from '@angular/router';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-user-create',
@@ -18,14 +19,16 @@ export class UserCreateComponent implements OnInit {
   constructor(
     private repository: RepositoryService,
     private errorHandler: ErrorHandlerService,
-    private router: Router
+    private router: Router,
+    @Inject(LOCALE_ID) private locale: string
   ) { }
 
   ngOnInit() {
     this.userForm = new FormGroup({
       firstname: new FormControl('', [Validators.required, Validators.maxLength(45), Validators.minLength(1)]),
       lastname: new FormControl('', [Validators.required, Validators.maxLength(45), Validators.minLength(1)]),
-      age: new FormControl('', [Validators.required, Validators.maxLength(3), Validators.minLength(1)])
+      dateOfBirth: new FormControl('', [Validators.required]),
+      username: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)])
     });
   }
 
@@ -43,6 +46,10 @@ export class UserCreateComponent implements OnInit {
     return false;
   }
 
+  public executeDatePicker(event) {
+    this.userForm.patchValue({ dateOfBirth: event });
+  }
+
   public createUser(userFormValue) {
     if (this.userForm.valid) {
       this.executeUserCreation(userFormValue);
@@ -53,7 +60,8 @@ export class UserCreateComponent implements OnInit {
     const user: UserForCreation = {
       firstname: userFormValue.firstname,
       lastname: userFormValue.lastname,
-      age: userFormValue.age
+      dateOfBirth: formatDate(userFormValue.dateOfBirth, 'yyyy-MM-dd', this.locale),
+      username: userFormValue.username
     };
 
     const apiUrl = 'api/user';
@@ -69,7 +77,7 @@ export class UserCreateComponent implements OnInit {
       );
   }
 
-  public redirectToUserList(){
+  public redirectToUserList() {
     this.router.navigate(['/user/list']);
   }
 
