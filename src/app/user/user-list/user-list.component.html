@@ -1,6 +1,6 @@
 <div class="row">
-  <div class="col-md-offset-10 col-md-2">
-    <a [routerLink]="['/user/create']">Create user</a>
+  <div class="col-12">
+    <a [routerLink]="['/user/create']">Skapa användare</a>
   </div>
 </div>
 <div class="row">
@@ -9,9 +9,9 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>User first name</th>
-            <th>User last name</th>
-            <th>User dob</th>
+            <th>Förnamn</th>
+            <th>Efternamn</th>
+            <th>Födelsedatum</th>
             <th></th>
             <th></th>
             <th></th>
@@ -24,14 +24,14 @@
             <td>{{user.dateOfBirth | date: 'yyyy/MM/dd'}}</td>
             <td>
               <button type="button" id="details" class="btn btn-default"
-                (click)="getUserDetails(user.id)">Details</button>
+                (click)="getUserDetails(user.id)">Detaljer</button>
             </td>
             <td><button type="button" id="update" class="btn btn-success"
-                (click)="redirectToUpdatePage(user.id)">Update</button>
+                (click)="redirectToUpdatePage(user.id)">Uppdatera</button>
             </td>
             <td>
               <button type="button" id="delete" class="btn btn-danger"
-                (click)="redirectToDeletePage(user.id)">Delete</button>
+                (click)="redirectToDeletePage(user.id)">Radera</button>
             </td>
           </tr>
         </tbody>

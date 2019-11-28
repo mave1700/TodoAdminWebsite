@@ -1,73 +1,62 @@
 <div class="container-fluid">
   <form [formGroup]="userForm" autocomplete="off" novalidate (ngSubmit)="updateUser(userForm.value)">
-    <div class="form-horizontal well">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card mt-2">
+          <div class="card-body">
+            <div class="form-horizontal">
+              <div class="form-group">
+                <label for="firstname" class="control-label">Förnamn </label>
+                <input type="text" formControlName="firstname" id="firstname" class="form-control" />
+                <em *ngIf="validateControl('firstname') && hasError('firstname', 'required')">Du måste ange ett förnamn</em>
+                <em *ngIf="validateControl('firstname') && hasError('firstname', 'maxlength')">Max längd 45 tecken.</em>
+                <em *ngIf="validateControl('firstname') && hasError('firstname', 'minlength')">Min längd 1 tecken.</em>
+              </div>
 
-      <div class="form-group">
-        <label for="firstname" class="control-label col-md-2">First name: </label>
-        <div class="col-md-5">
-          <input type="text" formControlName="firstname" id="firstname" class="form-control" />
+              <div class="form-group">
+                <label for="lastname" class="control-label">Efternamn </label>
+                <input type="text" formControlName="lastname" id="lastname" class="form-control" />
+                <em *ngIf="validateControl('lastname') && hasError('lastname', 'required')">Du måste ange ett efternamn</em>
+                <em *ngIf="validateControl('lastname') && hasError('lastname', 'maxlength')">Max längd 45 tecken.</em>
+                <em *ngIf="validateControl('lastname') && hasError('lastname', 'minlength')">Min längd 1 tecken.</em>
+              </div>
+
+              <div class="form-group">
+                <label for="dateOfBirth" class="control-label">Födelsedatum </label>
+                <input type="text" formControlName="dateOfBirth" id="dateOfBirth" class="form-control" appDatepicker
+                  (change)="executeDatePicker($event)" readonly />
+                <em *ngIf="validateControl('dateOfBirth') && hasError('dateOfBirth', 'required')">Du måste ange födelsedatum</em>
+              </div>
+
+              <div class="form-group">
+                <label for="lastname" class="control-label">Användarnamn </label>
+                <input type="text" formControlName="username" id="username" class="form-control" />
+                <em *ngIf="validateControl('username') && hasError('username', 'required')">Du måste ange användarnamn</em>
+                <em *ngIf="validateControl('username') && hasError('username', 'maxlength')">Max längd 30 tecken.</em>
+                <em *ngIf="validateControl('username') && hasError('username', 'minlength')">Min längd 1 tecken</em>
+              </div>
+
+              <br><br>
+
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-lg-3 offset-lg-4 col-md-4 offset-md-2">
+                    <button type="button" class="btn btn-block btn-default mb-2"
+                      (click)="redirectToUserList()">Avbryt</button>
+                  </div>
+                  <div class="col-lg-5 col-md-6">
+                    <button type="submit" class="btn btn-block btn-success " [disabled]="!userForm.valid">Spara</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-md-5">
-          <em *ngIf="validateControl('firstname') && hasError('firstname', 'required')">First name is required</em>
-          <em *ngIf="validateControl('firstname') && hasError('firstname', 'maxlength')">Maximum allowed length is 45
-            characters.</em>
-          <em *ngIf="validateControl('firstname') && hasError('firstname', 'minlength')">Minimum allowed length is 1
-            character.</em>
-        </div>
+
       </div>
-
-      <div class="form-group">
-        <label for="lastname" class="control-label col-md-2">Last name: </label>
-        <div class="col-md-5">
-          <input type="text" formControlName="lastname" id="lastname" class="form-control" />
-        </div>
-        <div class="col-md-5">
-          <em *ngIf="validateControl('lastname') && hasError('lastname', 'required')">Last name is required</em>
-          <em *ngIf="validateControl('lastname') && hasError('lastname', 'maxlength')">Maximum allowed length is 45
-            characters.</em>
-          <em *ngIf="validateControl('lastname') && hasError('lastname', 'minlength')">Minimum allowed length is 1
-            character.</em>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="dateOfBirth" class="control-label col-md-2">Date of birth: </label>
-        <div class="col-md-5">
-          <input type="text" formControlName="dateOfBirth" id="dateOfBirth" class="form-control" appDatepicker
-            (change)="executeDatePicker($event)" readonly />
-        </div>
-        <div class="col-md-5">
-          <em *ngIf="validateControl('dateOfBirth') && hasError('dateOfBirth', 'required')">Date of birth is
-            required</em>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="lastname" class="control-label col-md-2">Username: </label>
-        <div class="col-md-5">
-          <input type="text" formControlName="username" id="username" class="form-control" />
-        </div>
-        <div class="col-md-5">
-          <em *ngIf="validateControl('username') && hasError('username', 'required')">Username is required</em>
-          <em *ngIf="validateControl('username') && hasError('username', 'maxlength')">Maximum allowed length is 30
-            characters.</em>
-          <em *ngIf="validateControl('username') && hasError('username', 'minlength')">Minimum allowed length is 3
-            character.</em>
-        </div>
-      </div>
-
-      <br><br>
-
-      <div class="form-group">
-        <div class="col-md-5 col mb-1">
-          <button type="submit" class="btn btn-block btn-info" [disabled]="!userForm.valid">Save</button>
-        </div>
-        <div class="col-md-5">
-          <button type="button" class="btn btn-block btn-danger" (click)="redirectToUserList()">Cancel</button>
-        </div>
-      </div>
-
     </div>
+
+
   </form>
 
   <app-success-modal [modalHeaderText]="'Success!'" [modalBodyText]="'User was updated successfully'"

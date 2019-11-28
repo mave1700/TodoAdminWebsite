@@ -1,63 +1,70 @@
 <div class="container-fluid">
+
   <div class="row">
-    <div class="col-md-8 well">
-      <div class="row">
-        <div class="col-3">
-          <label for="firstName" class="control-label font-weight-bold">First name:</label>
-        </div>
-        <div class="col-7">
-          <span name="firstName">
-            {{user?.firstname}}
-          </span>
+    <div class="col-md-6">
+      <div class="card mt-2">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-5">
+              <label for="firstName" class="control-label font-weight-bold">Förnamn: </label>
+            </div>
+            <div class="col-7">
+              <span name="firstName">
+                {{user?.firstname}}
+              </span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-5">
+              <label for="lastname" class="control-label font-weight-bold">Efternamn:</label>
+            </div>
+            <div class="col-7">
+              <span name="lastname">
+                {{user?.lastname}}
+              </span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-5">
+              <label for="age" class="control-label font-weight-bold">Födelsedatum:</label>
+            </div>
+            <div class="col-7">
+              <span name="age">
+                {{user?.dateOfBirth | date: 'yyyy/MM/dd'}}
+              </span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-5">
+              <label for="age" class="control-label font-weight-bold">Användarnamn:</label>
+            </div>
+            <div class="col-7">
+              <span name="age">
+                {{user?.username}}
+              </span>
+            </div>
+          </div>
+
+          <br>
+          <div class="row">
+            <div class="col-lg-3 offset-lg-4 col-md-4 offset-md-2">
+                <button type="button" class="btn btn-block btn-default mb-2" (click)="redirectToUserList()">Avbryt</button>
+            </div>
+            <div class="col-lg-5 col-md-6">
+                <button type="submit" class="btn btn-block btn-danger" (click)="deleteUser()">Radera</button>
+
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="row">
-        <div class="col-3">
-          <label for="lastname" class="control-label font-weight-bold">Last name:</label>
-        </div>
-        <div class="col-7">
-          <span name="lastname">
-            {{user?.lastname}}
-          </span>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-3">
-          <label for="age" class="control-label font-weight-bold">Date of birth:</label>
-        </div>
-        <div class="col-7">
-          <span name="age">
-            {{user?.dateOfBirth | date: 'yyyy/MM/dd'}}
-          </span>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-3">
-          <label for="age" class="control-label font-weight-bold">Username:</label>
-        </div>
-        <div class="col-7">
-          <span name="age">
-            {{user?.username}}
-          </span>
-        </div>
-      </div>
-
     </div>
   </div>
-  <br>
-  <div class="row">
-    <div class="col-md-5 col mb-1">
-      <button type="submit" class="btn btn-block btn-info" (click)="deleteUser()">Delete</button>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-5">
-      <button type="button" class="btn btn-block btn-danger" (click)="redirectToUserList()">Cancel</button>
-    </div>
-  </div>
+
+
+
 
   <app-success-modal [modalHeaderText]="'Success message'" [modalBodyText]="'User was deleted successfully'"
     [okButtonText]="'OK'" (redirectOnOK)="redirectToUserList()"></app-success-modal>
