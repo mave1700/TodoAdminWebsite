@@ -56,10 +56,10 @@
         </div>
   </form>
 
-  <app-success-modal [modalHeaderText]="'Success!'" [modalBodyText]="'User was created successfully'"
+  <app-success-modal [modalHeaderText]="''" [modalBodyText]="'Ny användare har skapats!'"
     [okButtonText]="'OK'" (redirectOnOK)="redirectToUserList()"></app-success-modal>
 
-  <app-error-modal [modalHeaderText]="'Error'" [modalBodyText]="errorMessage" [okButtonText]="'OK'">
+  <app-error-modal [modalHeaderText]="'Ett fel uppstod'" [modalBodyText]="errorMessage" [okButtonText]="'OK'">
   </app-error-modal>
 
 </div>
