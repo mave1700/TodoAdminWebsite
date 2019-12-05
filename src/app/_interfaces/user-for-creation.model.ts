@@ -3,4 +3,5 @@ export interface UserForCreation {
     lastname: string;
     dateOfBirth: string;
     username: string;
+    password: string;
 }

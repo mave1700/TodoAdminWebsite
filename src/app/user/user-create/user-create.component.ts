@@ -28,7 +28,8 @@ export class UserCreateComponent implements OnInit {
       firstname: new FormControl('', [Validators.required, Validators.maxLength(45), Validators.minLength(1)]),
       lastname: new FormControl('', [Validators.required, Validators.maxLength(45), Validators.minLength(1)]),
       dateOfBirth: new FormControl('', [Validators.required]),
-      username: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)])
+      username: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
+      password: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)])
     });
   }
 
@@ -61,7 +62,8 @@ export class UserCreateComponent implements OnInit {
       firstname: userFormValue.firstname,
       lastname: userFormValue.lastname,
       dateOfBirth: formatDate(userFormValue.dateOfBirth, 'yyyy-MM-dd', this.locale),
-      username: userFormValue.username
+      username: userFormValue.username,
+      password: userFormValue.password
     };
 
     const apiUrl = 'api/user';

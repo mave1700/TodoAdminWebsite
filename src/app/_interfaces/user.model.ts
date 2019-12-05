@@ -6,6 +6,6 @@ export interface User {
   lastname: string;
   dateOfBirth: string;
   username: string;
-
+  password: string;
   tasks?: Task[];
 }

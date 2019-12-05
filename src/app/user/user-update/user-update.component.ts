@@ -29,7 +29,8 @@ export class UserUpdateComponent implements OnInit {
       firstname: new FormControl('', [Validators.required, Validators.maxLength(45), Validators.minLength(1)]),
       lastname: new FormControl('', [Validators.required, Validators.maxLength(45), Validators.minLength(1)]),
       dateOfBirth: new FormControl('', [Validators.required]),
-      username: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)])
+      username: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
+      password: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)])
     });
     this.getUserById();
   }
@@ -84,6 +85,7 @@ export class UserUpdateComponent implements OnInit {
     this.user.lastname = userFormValue.lastname;
     this.user.dateOfBirth = formatDate(userFormValue.dateOfBirth, 'yyyy-MM-dd', this.locale);
     this.user.username = userFormValue.username;
+    this.user.password = userFormValue.password;
 
     const apiUrl = `api/user/${this.user.id}`;
     this.repository.update(apiUrl, this.user)
